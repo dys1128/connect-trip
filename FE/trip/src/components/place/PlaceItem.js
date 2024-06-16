@@ -46,7 +46,7 @@ const PlaceItem = ({ place }) => {
             <Card
                 variant="outlined"
                 sx={{
-                    width: 240,
+                    width: 225,
                     bgcolor: 'background.paper',
                     p: 0,
                     position: 'relative',

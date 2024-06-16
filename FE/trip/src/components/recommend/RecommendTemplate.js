@@ -1,9 +1,7 @@
 'use client';
 
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
+import React, { useState } from 'react';
+import { Grid, Typography, Box, Button, Table, TableBody, TableCell, TableContainer, TableRow, Paper, Dialog, DialogTitle, DialogContent, DialogActions, List, ListItem, ListItemButton, AppBar, Tabs, Tab, Toolbar } from '@mui/material';
 import ItemContainer from '@/components/recommend/ItemContainer';
 import styles from './RecommendTemplate.module.css';
 
@@ -24,38 +22,68 @@ const places = [
 ];
 
 const RecommendTemplate = () => {
+    const [selectedTourismType, setSelectedTourismType] = useState('');
+
+    const [selectedTab, setSelectedTab] = useState(0);
+    const handleTabChange = (event, newValue) => {
+        setSelectedTab(newValue);
+      };
+    
+
     return (
-        <Box sx={{ padding: 2 }}>
-            <Box sx={{ textAlign: 'center', marginBottom: 4 }}>
-                <Typography variant="h4" component="h1" gutterBottom>
-                    맞춤 여행지
-                </Typography>
-                <Box sx={{ borderBottom: '2px solid #000', marginBottom: 2 }} />
-            </Box>
-            <Grid container spacing={2}>
-                <ItemContainer places={places.slice(0, 6)} />
-            </Grid>
-
-            <Box sx={{ textAlign: 'center', marginTop: 4, marginBottom: 4 }}>
-                <Typography variant="h4" component="h1" gutterBottom>
-                    인기 여행지
-                </Typography>
-                <Box sx={{ borderBottom: '2px solid #000', marginBottom: 2 }} />
-            </Box>
-            <Grid container spacing={2}>
-                <ItemContainer places={places.slice(4, 10)} />
-            </Grid>
-
-            <Box sx={{ textAlign: 'center', marginTop: 4, marginBottom: 4 }}>
-                <Typography variant="h4" component="h1" gutterBottom>
-                    조회수
-                </Typography>
-                <Box sx={{ borderBottom: '2px solid #000', marginBottom: 2 }} />
-            </Box>
-            <Grid container spacing={2}>
-                <ItemContainer places={places.slice(1, 4).concat(places.slice(8, 12))} />
-            </Grid>
+        <Box sx={{ 
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'column',
+            gap: 2,
+            margin: '20px 0'
+          }}>
+            <AppBar position="static" color="" sx={{ width: '60%' }}>
+              <Tabs 
+                value={selectedTab} 
+                onChange={handleTabChange} 
+                aria-label="tabs" 
+                variant="fullWidth" // Ensures tabs spread out evenly
+                centered // Centers the tabs in the AppBar
+              >
+                <Tab label="맞춤 여행지" />
+                <Tab label="인기여행지" />
+                <Tab label="조회수" />
+              </Tabs>
+            </AppBar>
+            {selectedTab === 0 && (
+                <Box sx={{ width: '60%', textAlign: 'center', marginBottom: 2 }}>
+                    <Typography variant="h5" component="h1" gutterBottom sx={{ fontWeight: 'bold' }}>
+                        맞춤 여행지
+                    </Typography>
+                    <Grid container spacing={2}>
+                        <ItemContainer places={places.slice(0, 6)} />
+                    </Grid>
+                </Box>
+            )}
+            {selectedTab === 1 && (
+                <Box sx={{ width: '60%', textAlign: 'center', marginBottom: 2 }}>
+                    <Typography variant="h5" component="h1" gutterBottom sx={{ fontWeight: 'bold' }}>
+                        인기 여행지
+                    </Typography>
+                    <Grid container spacing={2}>
+                        <ItemContainer places={places.slice(4, 10)} />
+                    </Grid>    
+                </Box>
+            )}
+            {selectedTab === 2 && (
+                <Box sx={{ width: '60%', textAlign: 'center', marginBottom: 2 }}>
+                    <Typography variant="h5" component="h1" gutterBottom sx={{ fontWeight: 'bold' }}>
+                        조회수
+                    </Typography>
+                    <Grid container spacing={2}>
+                        <ItemContainer places={places.slice(1, 4).concat(places.slice(8, 12))} />
+                    </Grid>
+                </Box>
+            )}
         </Box>
+            
     );
 };
 

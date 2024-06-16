@@ -12,7 +12,7 @@ function TagCheckbox({ item, checked, onChange }) {
   return (
     <ListItem>
       <Checkbox
-        checked = {checked}
+        checked={checked}
         overlay
         disableIcon
         variant="soft"

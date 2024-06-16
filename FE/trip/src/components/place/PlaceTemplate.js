@@ -25,7 +25,7 @@ const PlaceTemplate = () => {
                 level="h1"
                 noWrap
                 variant="plain" sx={{ margin: '20px'}}>
-                {selectedArea.name} :
+                {/* {selectedArea.name} : */}
             </Typography>
             <PlaceList/>
         </div>

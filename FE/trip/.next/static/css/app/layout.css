@@ -741,8 +741,14 @@ video {
     max-width: 1536px;
   }
 }
+.collapse {
+  visibility: collapse;
+}
 .static {
   position: static;
+}
+.fixed {
+  position: fixed;
 }
 .absolute {
   position: absolute;
